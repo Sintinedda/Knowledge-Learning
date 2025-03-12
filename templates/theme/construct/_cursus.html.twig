@@ -1,0 +1,20 @@
+<div class="accordion" id="cursuses">
+    {% for cursus in theme.cursuses|sort((a, b) => a.slug <=> b.slug) %}
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#cursus-{{ cursus.id }}" aria-expanded="true" aria-controls="collapseOne">
+                    {{ cursus.name }} 
+                </button>
+            </h2>
+            <div id="cursus-{{ cursus.id }}" class="accordion-collapse collapse" data-bs-parent="#cursuses">
+                <div class="accordion-body">
+                    <a href="{{ path('app_cursus_edit', {'id': cursus.id}) }}">Éditer</a>
+                    <a href="{{ path('app_cursus_show', {'id': cursus.id}) }}">Voir</a>
+                    <br/><br/><br/>
+                    <a href="{{ path('app_lesson_new', {'id': cursus.id}) }}">Créer nouvelle leçon</a>
+                    {% include "theme/construct/_lesson.html.twig" %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

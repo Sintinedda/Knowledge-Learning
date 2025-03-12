@@ -40,6 +40,12 @@ class Lesson
     #[ORM\OneToOne(mappedBy: 'lesson', cascade: ['persist', 'remove'])]
     private ?CertifLesson $certifLesson = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
+    #[ORM\Column]
+    private ?int $number = null;
+
     public function __construct()
     {
         $this->client = new ArrayCollection();
@@ -154,6 +160,30 @@ class Lesson
         }
 
         $this->certifLesson = $certifLesson;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getNumber(): ?int
+    {
+        return $this->number;
+    }
+
+    public function setNumber(int $number): static
+    {
+        $this->number = $number;
 
         return $this;
     }

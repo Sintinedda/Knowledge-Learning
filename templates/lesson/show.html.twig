@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lesson{% endblock %}
+
+{% block body %}
+    <h1>{{ lesson.name }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ lesson.id }}</td>
+            </tr>
+            <tr>
+                <th>Cursus</th>
+                <td>{{ lesson.cursus.name }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ lesson.price }} €</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_theme_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('app_lesson_edit', {'id': lesson.id}) }}">Éditer</a>
+
+    {{ include('lesson/_delete_form.html.twig') }}
+{% endblock %}

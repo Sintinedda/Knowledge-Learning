@@ -24,6 +24,9 @@ class Theme
     #[ORM\OneToMany(targetEntity: Cursus::class, mappedBy: 'theme')]
     private Collection $cursuses;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->cursuses = new ArrayCollection();
@@ -72,6 +75,18 @@ class Theme
                 $cursus->setTheme(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

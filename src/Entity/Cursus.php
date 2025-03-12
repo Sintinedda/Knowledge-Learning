@@ -43,6 +43,12 @@ class Cursus
     #[ORM\OneToMany(targetEntity: CertifLesson::class, mappedBy: 'cursus')]
     private Collection $certifLessons;
 
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->clients = new ArrayCollection();
@@ -176,6 +182,30 @@ class Cursus
                 $certifLesson->setCursus(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
 
         return $this;
     }

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Cursus{% endblock %}
+
+{% block body %}
+    <h1>Créer nouveau cursus pour le thème {{ theme.name }}</h1>
+
+    {{ include('cursus/_form.html.twig') }}
+
+    <a href="{{ path('app_theme_index') }}">Retour à la liste</a>
+{% endblock %}
